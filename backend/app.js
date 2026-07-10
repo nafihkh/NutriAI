@@ -3,7 +3,9 @@ require("dotenv").config();
 const app = express();;
 
 app.use("/", (req,res) => {
-    res.send("hello from server am nafih");
+
+    res.send("hello from server, this project was made by both Abhinav and Nafih. We will never give you up, we will never let you down :)");
+
 })
 app.listen(3000, () => {
     
