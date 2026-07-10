@@ -7,4 +7,4 @@ A group project for tracking nutrition with AI-powered insights.
 
 ## Tech Stack
 - Frontend: HTML, JavaScript
-- Backend: Python, Flask
+- Backend: Node.js, Express
