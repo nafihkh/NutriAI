@@ -1,13 +1,28 @@
-const express = require("express")
+const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
-const app = express();;
+const connectDB = require("./config/db");
 
-app.use("/", (req,res) => {
+const authRoutes = require("./routes/auth");
 
-    res.send("hello from server, this project was made by both Abhinav and Nafih. We will never give you up, we will never let you down :)");
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-})
-app.listen(3000, () => {
-    
-    console.log("server is running at:http://localhost:3000")
-})
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+
+app.get("/", (req, res) => {
+  res.send("NutriAI backend is running");
+});
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log("Server running on port " + PORT);
+    });
+  })
+  .catch((err) => {
+    console.error("MongoDB connection failed:", err);
+  });
