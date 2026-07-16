@@ -1,15 +1,8 @@
-const { MongoClient } = require('mongodb');
-const URI = 'mongodb://localhost:27017/NutriAI'; // Replace with your URI
+const mongoose = require("mongoose");
 
-async function connect() {
-  const client = new MongoClient(URI);
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-    return client.db('mydb'); // Returns the database object
-  } catch (err) {
-    console.error('Connection error:', err);
-  }
-}   
+const connectDB = async () => {
+  const conn = await mongoose.connect(process.env.MONGO_URI);
+  console.log("MongoDB connected:", conn.connection.host);
+};
 
 module.exports = connectDB;
