@@ -1,19 +1,17 @@
 import React from 'react';
-import { Columns3, Moon, Sun, Compass } from 'lucide-react';
+import { PanelTop , Moon, Sun, Compass } from 'lucide-react';
 
 export default function Header({
   activeView,
   onChangeView,
   theme,
   onToggleTheme,
-  onToggleRadar,
-  onOpenWallet,
   onToggleSidebar,
   walletConnected
 }) {
   return (
     <header className="h-[72px] px-[28px] flex items-center justify-between border-b border-[var(--border-color)] bg-[var(--bg-secondary)] transition-[var(--transition-smooth)] z-10">
-      <div className="flex items-center gap-[16px]">
+      <div className="flex items-center gap-[80px]">
         <div 
           className="flex items-center gap-[12px] cursor-pointer" 
           onClick={() => onChangeView('chat-view')}
@@ -35,53 +33,30 @@ export default function Header({
           id="sidebar-toggle" 
           onClick={onToggleSidebar}
         >
-          <Columns3 size={18} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            style={{ color: "#b2b3b5" }}
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M16.5 21 L7.5 21" />
+            <path d="M16.5 3 A4.5 4.5 0 0 1 21 7.5" />
+            <path d="M21 16.5 A4.5 4.5 0 0 1 16.5 21" />
+            <path d="M21 7.5 L21 16.5" />
+            <path d="M3 16.5 L3 7.5" />
+            <path d="M3 7.5 A4.5 4.5 0 0 1 7.5 3" />
+            <path d="M3 9h18" />
+            <path d="M7.5 21 A4.5 4.5 0 0 1 3 16.5" />
+            <path d="M7.5 3 L16.5 3" />
+          </svg>
         </button>
       </div>
-
-      {/* Main Navigation Tabs */}
-      <nav className="flex bg-[var(--bg-primary)] p-[4px] rounded-[var(--radius-xl)] relative border border-[var(--border-color)]">
-        <button 
-          className={`px-[24px] py-[8px] font-[var(--font-display)] font-medium text-[14px] rounded-[var(--radius-lg)] transition-[var(--transition-fast)] z-10 ${
-            activeView === 'chat-view' 
-              ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] shadow-[var(--shadow-sm)]' 
-              : 'text-[var(--text-secondary)]'
-          }`} 
-          onClick={() => onChangeView('chat-view')}
-        >
-          AI Chatbot
-        </button>
-        <button 
-          className={`px-[24px] py-[8px] font-[var(--font-display)] font-medium text-[14px] rounded-[var(--radius-lg)] transition-[var(--transition-fast)] z-10 ${
-            activeView === 'dashboard-view' 
-              ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] shadow-[var(--shadow-sm)]' 
-              : 'text-[var(--text-secondary)]'
-          }`} 
-          onClick={() => onChangeView('dashboard-view')}
-        >
-          Dashboard
-        </button>
-        <button 
-          className={`px-[24px] py-[8px] font-[var(--font-display)] font-medium text-[14px] rounded-[var(--radius-lg)] transition-[var(--transition-fast)] z-10 ${
-            activeView === 'help-view' 
-              ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] shadow-[var(--shadow-sm)]' 
-              : 'text-[var(--text-secondary)]'
-          }`} 
-          onClick={() => onChangeView('help-view')}
-        >
-          Help
-        </button>
-        <button 
-          className={`px-[24px] py-[8px] font-[var(--font-display)] font-medium text-[14px] rounded-[var(--radius-lg)] transition-[var(--transition-fast)] z-10 ${
-            activeView === 'labs-view' 
-              ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] shadow-[var(--shadow-sm)]' 
-              : 'text-[var(--text-secondary)]'
-          }`} 
-          onClick={() => onChangeView('labs-view')}
-        >
-          Labs
-        </button>
-      </nav>
 
       <div className="flex items-center gap-[16px]">
         {/* Theme Toggle Switch */}
@@ -94,34 +69,7 @@ export default function Header({
           <Moon className="absolute w-[18px] h-[18px] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ opacity: theme === 'light' ? 1 : 0, transform: theme === 'light' ? 'rotate(0)' : 'rotate(-90deg)' }} />
           <Sun className="absolute w-[18px] h-[18px] transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ opacity: theme === 'dark' ? 1 : 0, transform: theme === 'dark' ? 'rotate(0)' : 'rotate(90deg)' }} />
         </button>
-
-        {/* Market Radar Button */}
-        <button 
-          className="flex items-center gap-[8px] px-[16px] py-[8px] bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-[var(--radius-lg)] font-[var(--font-display)] font-medium text-[13px] text-[var(--text-secondary)] transition-[var(--transition-fast)] hover:bg-[var(--bg-secondary)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)]" 
-          id="radar-toggle" 
-          onClick={onToggleRadar}
-        >
-          <Compass size={16} />
-          <span>Market Radar</span>
-        </button>
-
-        {/* Wallet / User Profile chip */}
-        <div 
-          className="flex items-center gap-[10px] pl-[8px] pr-[16px] py-[6px] bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-[var(--radius-lg)] text-[13px] font-semibold font-[var(--font-display)] transition-[var(--transition-fast)] hover:border-[var(--accent-color)] hover:shadow-[0_0_10px_var(--accent-glow)] cursor-pointer" 
-          id="wallet-dropdown-trigger" 
-          onClick={onOpenWallet}
-        >
-          <div className="w-[26px] h-[26px] rounded-full overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=120&h=120&auto=format&fit=crop"
-              alt="User Wallet Avatar"
-            />
-          </div>
-          <span className="wallet-address">
-            {walletConnected ? 'X084575...1234' : 'Connect Wallet'}
-          </span>
-        </div>
+    
       </div>
     </header>
   );

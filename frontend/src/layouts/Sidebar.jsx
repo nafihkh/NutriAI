@@ -21,60 +21,9 @@ export default function Sidebar({
         <span>New Chat</span>
       </button>
 
-      {/* Sidebar Navigation Menu */}
-      <div className="flex flex-col gap-[12px]">
-        <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[var(--text-muted)] pl-[8px]">Menu</span>
-        <ul className="list-none flex flex-col gap-[6px]">
-          <li
-            className={`flex items-center gap-[12px] px-[14px] py-[10px] rounded-[var(--radius-sm)] transition-[var(--transition-fast)] cursor-pointer ${
-              activeSidebarTab === 'market-daily' 
-                ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] font-semibold shadow-[var(--shadow-sm)] border-l-[3px] border-l-[var(--accent-color)]' 
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[rgba(var(--accent-color-rgb),0.05)]'
-            }`}
-            onClick={() => onChangeSidebarTab('market-daily')}
-          >
-            <Award size={16} />
-            <span>Market Daily</span>
-          </li>
-          <li
-            className={`flex items-center gap-[12px] px-[14px] py-[10px] rounded-[var(--radius-sm)] transition-[var(--transition-fast)] cursor-pointer ${
-              activeSidebarTab === 'my-portfolio' 
-                ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] font-semibold shadow-[var(--shadow-sm)] border-l-[3px] border-l-[var(--accent-color)]' 
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[rgba(var(--accent-color-rgb),0.05)]'
-            }`}
-            onClick={() => onChangeSidebarTab('my-portfolio')}
-          >
-            <Star size={16} />
-            <span>My Portfolio</span>
-          </li>
-          <li
-            className={`flex items-center gap-[12px] px-[14px] py-[10px] rounded-[var(--radius-sm)] transition-[var(--transition-fast)] cursor-pointer ${
-              activeSidebarTab === 'my-monitor' 
-                ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] font-semibold shadow-[var(--shadow-sm)] border-l-[3px] border-l-[var(--accent-color)]' 
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[rgba(var(--accent-color-rgb),0.05)]'
-            }`}
-            onClick={() => onChangeSidebarTab('my-monitor')}
-          >
-            <Monitor size={16} />
-            <span>My Monitor</span>
-          </li>
-          <li
-            className={`flex items-center gap-[12px] px-[14px] py-[10px] rounded-[var(--radius-sm)] transition-[var(--transition-fast)] cursor-pointer ${
-              activeSidebarTab === 'my-project' 
-                ? 'text-[var(--text-primary)] bg-[var(--bg-secondary)] font-semibold shadow-[var(--shadow-sm)] border-l-[3px] border-l-[var(--accent-color)]' 
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[rgba(var(--accent-color-rgb),0.05)]'
-            }`}
-            onClick={() => onChangeSidebarTab('my-project')}
-          >
-            <FileText size={16} />
-            <span>My Project</span>
-          </li>
-        </ul>
-      </div>
-
       {/* Chat History List */}
       <div className="flex flex-col gap-[12px] flex-1">
-        <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[var(--text-muted)] pl-[8px]">Yesterday</span>
+        <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[var(--text-muted)] pl-[8px]">Recents</span>
         <ul className="list-none flex flex-col gap-[6px]">
           <li
             className="flex items-center gap-[10px] px-[12px] py-[8px] rounded-[var(--radius-sm)] text-[var(--text-secondary)] text-[13px] transition-[var(--transition-fast)] cursor-pointer hover:text-[var(--accent-color)] hover:bg-[rgba(var(--accent-color-rgb),0.04)]"

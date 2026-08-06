@@ -3,9 +3,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from './layouts/Header';
 import Sidebar from './layouts/Sidebar';
 import Footer from './layouts/Footer';
-import WalletModal from './components/WalletModal';
-import UserModal from './components/UserModal';
-import MarketRadarDrawer from './features/radar/MarketRadarDrawer';
+import UserModal from './components/modals/UserModal';
 import { Info } from 'lucide-react';
 
 export default function App() {
@@ -28,7 +26,6 @@ export default function App() {
   const [isTyping, setIsTyping] = useState(false);
   
   // Modals & Drawers States
-  const [walletModalOpen, setWalletModalOpen] = useState(false);
   const [userModalOpen, setUserModalOpen] = useState(false);
   const [radarOpen, setRadarOpen] = useState(false);
 
@@ -99,12 +96,8 @@ export default function App() {
   // Global click listener to close modals when clicking outside
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      const isWalletTrigger = e.target.closest('#wallet-dropdown-trigger');
       const isUserTrigger = e.target.closest('#user-menu-trigger');
       
-      if (!isWalletTrigger && walletModalOpen) {
-        setWalletModalOpen(false);
-      }
       if (!isUserTrigger && userModalOpen) {
         setUserModalOpen(false);
       }
@@ -112,7 +105,7 @@ export default function App() {
     
     document.addEventListener('click', handleOutsideClick);
     return () => document.removeEventListener('click', handleOutsideClick);
-  }, [walletModalOpen, userModalOpen]);
+  }, [userModalOpen]);
 
   // Toast Manager
   const showToast = (message) => {
@@ -250,16 +243,6 @@ export default function App() {
     handleSendMessage(`Compare yield pools or liquidity rates for ${ticker.name} (${ticker.sym})`);
   };
 
-  // Wallet disconnection toggle
-  const handleDisconnectWallet = () => {
-    setWalletConnected(prev => {
-      const next = !prev;
-      showToast(next ? 'Wallet linked successfully.' : 'Wallet connection terminated.');
-      return next;
-    });
-    setWalletModalOpen(false);
-  };
-
   const handleLogout = () => {
     showToast('Signing out profile jackmatrix89@gmail.com...');
     setUserModalOpen(false);
@@ -271,8 +254,6 @@ export default function App() {
       <Header
         theme={theme}
         onToggleTheme={handleToggleTheme}
-        onToggleRadar={() => setRadarOpen(prev => !prev)}
-        onOpenWallet={() => setWalletModalOpen(true)}
         onToggleSidebar={() => setSidebarCollapsed(prev => !prev)}
         walletConnected={walletConnected}
       />
@@ -307,21 +288,7 @@ export default function App() {
 
       {/* Footer Layout component */}
       <Footer />
-
-      {/* Drawers & Modals Overlay Layers */}
-      <MarketRadarDrawer
-        isOpen={radarOpen}
-        onClose={() => setRadarOpen(false)}
-        cryptoTickers={cryptoTickers}
-        onTickerClick={handleTickerClick}
-      />
-
-      <WalletModal
-        isOpen={walletModalOpen}
-        onClose={() => setWalletModalOpen(false)}
-        walletConnected={walletConnected}
-        onDisconnectWallet={handleDisconnectWallet}
-      />
+      
 
       <UserModal
         isOpen={userModalOpen}
