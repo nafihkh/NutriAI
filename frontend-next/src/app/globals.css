@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  --font-primary: var(--font-inter), sans-serif;
+  --font-display: var(--font-outfit), sans-serif;
+
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-sidebar: var(--bg-sidebar);
+  --color-bg-card: var(--bg-card);
+  --color-bg-input: var(--bg-input);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-accent-color: var(--accent-color);
+  --color-accent-secondary: var(--accent-secondary);
+
+  --animate-logo-spin: logo-spin 20s linear infinite;
+  --animate-orb-pulse: orb-pulse 4s infinite alternate ease-in-out;
+  --animate-fade-in-up: fade-in-up 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-dot-jump: dot-jump 1.4s infinite ease-in-out;
+
+  @keyframes logo-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes orb-pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
+  }
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes dot-jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+}
+
+/* Variables & Themes */
+:root {
+  /* Transitions */
+  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Corner Radii */
+  --radius-xs: 6px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+
+  /* Colors (Light Mode) */
+  --bg-primary: #f4f7f6;
+  --bg-secondary: #ffffff;
+  --bg-sidebar: #ebf3f0;
+  --bg-card: #ffffff;
+  --bg-input: #f8faf9;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent-color: #10b981; /* Premium Emerald/Leaf Green */
+  --accent-color-rgb: 16, 185, 129;
+  --accent-secondary: #06b6d4; /* Teal / Cyan */
+  --accent-glow: rgba(16, 185, 129, 0.08);
+  --border-color: rgba(30, 41, 59, 0.06);
+  --border-focus: rgba(16, 185, 129, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 50px rgba(16, 185, 129, 0.1);
+
+  /* Scrollbar */
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb: #cbd5e1;
+}
+
+[data-theme="dark"] {
+  /* Colors (Dark Mode) */
+  --bg-primary: #090d16;
+  --bg-secondary: #0f172a;
+  --bg-sidebar: #070a12;
+  --bg-card: #1e293b;
+  --bg-input: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --accent-color: #34d399;
+  --accent-color-rgb: 52, 211, 153;
+  --accent-secondary: #22d3ee;
+  --accent-glow: rgba(52, 211, 153, 0.15);
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-focus: rgba(52, 211, 153, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 60px rgba(52, 211, 153, 0.15);
+
+  /* Scrollbar */
+  --scrollbar-thumb: #475569;
+}
+
+/* Base Styles */
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  transition: var(--transition-smooth);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .glass-panel {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
