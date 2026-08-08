@@ -37,6 +37,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  createdAt?: string;
 }
 
 export interface Targets {
@@ -90,6 +91,8 @@ export interface Profile {
   weightKg: number;
   goal: string;
   activityLevel: string;
+  dietPreference?: string;
+  allergies: string[];
 }
 
 export const api = {
