@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import Meal from "../models/Meal";
 import Food from "../models/Food";
 import Profile from "../models/Profile";
+import WaterIntake from "../models/Water";
 import auth from "../middleware/auth";
 import { calculateTargets } from "../utils/nutrition";
 
@@ -82,6 +83,10 @@ router.get("/summary", auth, async (req: Request, res: Response) => {
 
     const profile = await Profile.findOne({ userId: req.user.id });
     const meal = await Meal.findOne({ userId: req.user.id, date: todayString() });
+    const water = await WaterIntake.findOne({
+      userId: req.user.id,
+      date: todayString(),
+    });
 
     const totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
     for (const item of meal?.items || []) {
@@ -94,7 +99,7 @@ router.get("/summary", auth, async (req: Request, res: Response) => {
     if (!profile) {
       res.json({
         hasProfile: false,
-        consumed: totals,
+        consumed: { ...totals, water: water?.liters || 0 },
         targets: null,
       });
       return;
@@ -108,6 +113,7 @@ router.get("/summary", auth, async (req: Request, res: Response) => {
         protein: Math.round(totals.protein * 10) / 10,
         carbs: Math.round(totals.carbs * 10) / 10,
         fat: Math.round(totals.fat * 10) / 10,
+        water: Math.round((water?.liters || 0) * 100) / 100,
       },
       targets,
     });
