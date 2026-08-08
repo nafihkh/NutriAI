@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth";
 import profileRoutes from "./routes/profile";
 import mealRoutes from "./routes/meals";
 import foodRoutes from "./routes/foods";
+import waterRoutes from "./routes/water";
 import { seedFoods } from "./utils/seed";
 
 const app = express();
@@ -18,6 +19,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/meals", mealRoutes);
 app.use("/api/foods", foodRoutes);
+app.use("/api/water", waterRoutes);
 
 app.get("/", (req, res) => {
   res.send("NutriAI backend is running");
