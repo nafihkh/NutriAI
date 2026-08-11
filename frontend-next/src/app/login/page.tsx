@@ -37,7 +37,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-72px)] p-[16px]">
+    <div className="flex items-center justify-center min-h-screen p-[16px]">
       <div className="w-full max-w-[400px] bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-[var(--radius-md)] p-[32px] shadow-[var(--shadow-md)]">
         <div className="flex flex-col items-center gap-[12px] mb-[28px]">
           <div className="w-[48px] h-[48px] overflow-hidden flex items-center justify-center">
