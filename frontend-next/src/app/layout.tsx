@@ -1,6 +1,5 @@
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
-import MainLayout from "@/components/MainLayout";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,9 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} h-full antialiased`}>
       <body className="h-full w-full overflow-hidden">
-        <MainLayout>
-          {children}
-        </MainLayout>
+        {children}
       </body>
     </html>
   );
