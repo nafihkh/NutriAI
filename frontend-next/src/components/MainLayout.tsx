@@ -6,6 +6,7 @@ import Header from './Header';
 import UserModal from './UserModal';
 import { Info } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { clearToken } from '@/lib/api';
 
 const MainLayoutContext = createContext(null);
 
@@ -54,8 +55,9 @@ export default function MainLayout({ children }) {
   };
 
   const handleLogout = () => {
-    showToast('Signing out Muhammed Nafih...');
+    clearToken();
     setUserModalOpen(false);
+    router.replace('/login');
   };
 
   const handleNewChat = () => {
