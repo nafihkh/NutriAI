@@ -7,8 +7,11 @@ import {
   Smile, Egg, Milk, Wheat, Cookie, Slash, Quote
 } from 'lucide-react';
 import { useMainLayout } from '@/components/MainLayout';
+import { clearToken } from '@/lib/api';
+import { useRouter } from 'next/navigation';
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { showToast } = useMainLayout() || { showToast: () => {} };
 
   // Profile data state matching Jack Matrix from mockup
@@ -623,7 +626,7 @@ export default function ProfilePage() {
           </div>
 
           <button 
-            onClick={() => showToast('Signing out...')}
+            onClick={() => { clearToken(); router.replace('/login'); }}
             className="flex items-center gap-[8px] w-full justify-center py-[11px] border border-rose-500/20 hover:border-rose-500 hover:bg-rose-500/5 text-rose-500 rounded-lg text-[13.5px] font-display font-semibold transition-[var(--transition-fast)] cursor-pointer"
           >
             <LogOut size={14} />
