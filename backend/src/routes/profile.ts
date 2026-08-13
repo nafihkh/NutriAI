@@ -1,5 +1,6 @@
 import { Request, Response, Router } from "express";
 import Profile from "../models/Profile";
+import WeightLog from "../models/WeightLog";
 import auth from "../middleware/auth";
 import { calculateTargets } from "../utils/nutrition";
 
@@ -41,6 +42,13 @@ router.post("/", auth, async (req: Request, res: Response) => {
         allergies: allergies || [],
       },
       { new: true, upsert: true }
+    );
+
+    const today = new Date().toISOString().slice(0, 10);
+    await WeightLog.findOneAndUpdate(
+      { userId: req.user.id, date: today },
+      { weightKg },
+      { upsert: true }
     );
 
     const targets = calculateTargets(profile);
